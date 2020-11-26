@@ -49,3 +49,15 @@ while ymelhor != 0:
     grafico.append(ymelhor)
     
     plt.plot(np.log(grafico), color='red')
+   
+    
+    
+
+    cont += 1
+    if cont == 2000:
+        print('Não consegui achar o valor, a resolução é um Nº Complexo')
+        break
+    print('O melhor valor de y = {} para x = {}, {}ºtentativa'.format(ymelhor,xmelhor,cont))
+    print('O valor atual de y = {} para x = {}'.format(y,x))
+print('FIM!') 
+plt.show()
