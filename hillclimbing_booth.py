@@ -12,7 +12,7 @@ xajuste = np.array([x1, x2])
 xmelhor1 = x1
 xmelhor2 = x2
 xmelhor = np.array([xmelhor1, xmelhor2])
-ymelhor = ((xmelhor[0] + (2*xmelhor[1]) + 7)**2 + ((2*xmelhor[0]) + xmelhor[1] - 5)**2)
+ymelhor = ((xmelhor[0] + (2*xmelhor[1]) - 7)**2 + ((2*xmelhor[0]) + xmelhor[1] - 5)**2)
 
 
 
@@ -22,7 +22,7 @@ def v_random_float():
 
 
 
-y = ((x[0] + (2*x[1]) + 7)**2 + ((2*x[0]) + x[1] - 5)**2)
+
 
 while ymelhor != 0:
     
@@ -33,11 +33,13 @@ while ymelhor != 0:
         x[i] = xmelhor[i] + xajuste[i]
 
 
+    y = (((x[0] + (2*x[1]) - 7)**2) + (((2*x[0]) + x[1] - 5)**2))
+
 
     if ymelhor > y:
         for j in range(0,2):
             xmelhor[j] = x[j]
-        ymelhor = ((xmelhor[0] + (2*xmelhor[1]) + 7)**2 + ((2*xmelhor[0]) + xmelhor[1] - 5)**2)
+        ymelhor = (((xmelhor[0] + (2*xmelhor[1])) - 7)**2 + (((2*xmelhor[0]) + xmelhor[1] - 5)**2))
 
     
     grafico.append(ymelhor)
