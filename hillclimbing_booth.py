@@ -2,58 +2,56 @@ import random
 import numpy as np
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import axes3d
+
+def funcao(x, n):
+    y = (((x[0] + (2*x[1]) - 7)**2) + (((2*x[0]) + x[1] - 5)**2))
+    return y
+
+
+def v_random_float(n,cont):
+    for i in range(0,n):   
+        xajuste[i] = random.gauss(0,(0.99**cont))
+    return xajuste
+
+
+
+n = 2
+
+x = np.zeros(n)
+xajuste = np.zeros(n)
+
+for i in range(0,n):
+    x[i] = float(input("Digite um suposto valor para x{}: ".format(i)))
+
+
+xmelhor = x
+ymelhor = funcao(xmelhor,n)
+
 cont = 0
 grafico = []
-
-x1 = float(input("Digite um valor inicial para x: "))
-x2 = float(input("Digite um valor inicial para y: "))
-x = np.array([x1, x2])
-xajuste = np.array([x1, x2])
-xmelhor1 = x1
-xmelhor2 = x2
-xmelhor = np.array([xmelhor1, xmelhor2])
-ymelhor = ((xmelhor[0] + (2*xmelhor[1]) - 7)**2 + ((2*xmelhor[0]) + xmelhor[1] - 5)**2)
-
-
-
-def v_random_float():
-    for i in range(0,2):   
-        xajuste[i] = random.gauss(0,(0.99**cont))
-
-
 
 
 
 while ymelhor != 0:
-    
-    
-    v_random_float() 
-    
-    for i in range(0,2):
-        x[i] = xmelhor[i] + xajuste[i]
+      
+    x = xmelhor + v_random_float(n,cont)
 
-
-    y = (((x[0] + (2*x[1]) - 7)**2) + (((2*x[0]) + x[1] - 5)**2))
-
+    y = funcao(x,n)
 
     if ymelhor > y:
-        for j in range(0,2):
-            xmelhor[j] = x[j]
-        ymelhor = (((xmelhor[0] + (2*xmelhor[1])) - 7)**2 + (((2*xmelhor[0]) + xmelhor[1] - 5)**2))
+        xmelhor = x
+        ymelhor = y
 
     
     grafico.append(ymelhor)
     
     plt.plot(np.log(grafico), color='red')
    
-    
-    
-
     cont += 1
     if cont == 2000:
         print('Acabou as tentativas')
         break
     print('O melhor valor de y = {} para x = {}, {}ºtentativa'.format(ymelhor,xmelhor,cont))
-    "print('O valor atual de y = {} para x = {}'.format(y,x))"
+    '''print('O valor atual de y = {} para x = {}'.format(y,x))'''
 print('FIM!') 
 plt.show()
