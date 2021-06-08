@@ -16,12 +16,16 @@ gain = np.zeros(2)
 # Função Gaussiana responsável por fazer a aproximação do valor inserido pelo o usuário ao valor ideal
 def v_random_float(n,cont):
     """
-    [summary]
+    Esta função é responsável por determinar o ajuste que o "x" da função custo
+    irá sofrer. Quanto mais iterações o programa sofrer, menor é o ajuste feito. 
+    Ou seja, no início do código teremos um valor convergindo muito rapidamente
+    para valores melhores, e conforme o programa for rodando mais "fino" é esse
+    ajuste.
 
     Args:
-        n ([int]): [description]
-        cont ([int]): [description]
-
+        n ([int]): número de variáveis da função custo
+        cont ([int]): quantidade de iterações do código
+ 
     Returns:
         [float]: [description]
     """
@@ -30,12 +34,13 @@ def v_random_float(n,cont):
 
 def simula_circuito(resistor1, resistor2, capacitor1):
     """
-    [summary]
+    Função onde é definido o circuito que será simulado, para indentificar
+    qual deve ser os valores dos componentes que não são conhecidos
 
     Args:
-        resistor1 ([float]): [description]
-        resistor2 ([float]): [description]
-        capacitor1 ([float]): [description]
+        resistor1 ([float]): valor que o resistor 1 vai assumir (R1 resistence)
+        resistor2 ([float]): valor que o resistor 2 vai assumir (R2 resistence)
+        capacitor1 ([float]): valor que o capacitor 1 vai assumir (C1 capacitance)
 
     Returns:
         [float]: [description]
