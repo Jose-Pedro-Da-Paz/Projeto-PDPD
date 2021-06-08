@@ -44,12 +44,16 @@ fm = (((x1m ** 2) + x2m - 11) ** 2)+((x1m + (x2m ** 2) - 7) ** 2) #Função a se
 
 # Geração da figura onde vai ser armazenada os dados para o gráfico
 plt.figure()
+
 # Specify contour lines 
 #lines = range(2, 52, 2)
+
 # Plot contours
 CS = plt.contour(x1m, x2m, fm, 50)#,lines)
+
 # Label contours
 plt.clabel(CS, inline=1, fontsize=10)
+
 # Add some text to the plot
 plt.title('Non-Convex Function')
 plt.xlabel('x1')
@@ -60,20 +64,28 @@ plt.ylabel('x2')
 ##################################################
 # Simulated Annealing
 ##################################################
+
 # Número de Cíclos
 n = 50
+
 # Número de tentativas por ciclo
 m = 50
+
 # Número de soluções aceitas
 na = 0.0
+
 # Probabilidade de ser aceito uma solução pior no começo do algoritmo
 p1 = 0.7
+
 # Probabilidade de ser aceito uma solução pior no final do algoritmo
 p50 = 0.001
+
 # "Temperatura inicial"
 t1 = -1.0/math.log(p1)
+
 # "Temperatura final"
 t50 = -1.0/math.log(p50)
+
 # redução fracionada que ocorre por ciclo
 frac = (t50 / t1) ** (1.0 / (n - 1.0))
 
@@ -81,38 +93,47 @@ frac = (t50 / t1) ** (1.0 / (n - 1.0))
 
 # Inicia x
 x = np.zeros((n + 1, num))
+
 x[0] = x_start #entrada_valor(num)
 xi = np.zeros(num)
 xi = x[0]
 na = na + 1.0
+
 # melhor resultado para x
 xc = np.zeros(num)
 xc = x[0]
 fc = f(xi)
 fs = np.zeros(n + 1)
 fs[0] = fc
+
 # temperatura atual
 t = t1
 pior = 0
 
 # DeltaE médio
 DeltaE_avg = 0.0
+
 for i in range(n):
     print('Ciclo: ' + str(i) + ' Temperatura: ' + str(t))
+    
     for j in range(m):
         # gera novos pontos para ser testados
         for k in range(num):
             xi[k] = xc[k] + random.random() - 0.5
             # limita máximos e minimos onde serão procurados as respostas
             xi[k] = max(min(xi[k], 5.0), -5.0)
+        
         DeltaE = abs(f(xi) - fc)
+        
         if (f(xi) > fc):
             # Inicializa DeltaE_avg se encontrar uma soluçao pior
             #   Na primeira iteração
             if (i==0 and j==0): DeltaE_avg = DeltaE
+            
             # Função objetivo é pior
             # gera a probabilidade de aceitar ou não a solução pior
             p = math.exp(-DeltaE / (DeltaE_avg * t))
+            
             # determina se aceita o pior ponto
             if (random.random() < p):
                 # aceita a pior solução
@@ -125,19 +146,25 @@ for i in range(n):
         else:
             # se a função objetivo for menor automaticamente aceita
             accept = True
+        
         if (accept == True):
             # Atualiza as novas soluções aceitas 
             for k in range(num):
                 xc[k] = xi[k]
             fc = f(xc)
+            
             # incrementa o número de soluções aceitas
             na = na + 1.0
+            
             # Atualiza DeltaE_avg
             DeltaE_avg = (DeltaE_avg * (na - 1.0) +  DeltaE) / na
+    
     # Guarda os melhores valores de x no fim de cada ciclo
     for k in range(num):
         x[i + 1][k] = xc[k]
+    
     fs[i + 1] = fc
+    
     # diminui a "temperatura" para o próximo ciclo
     t = frac * t
 
