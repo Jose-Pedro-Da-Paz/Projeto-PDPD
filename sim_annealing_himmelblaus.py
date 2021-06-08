@@ -178,9 +178,11 @@ plt.plot(x[:, 0], x[:, 1], 'y-o')
 plt.savefig('contour.png')
 
 fig = plt.figure()
+
 ax1 = fig.add_subplot(211)
 ax1.plot(fs, 'r.-')
 ax1.legend(['Objective'])
+
 ax2 = fig.add_subplot(212)
 ax2.plot(x[:,0], 'b.-')
 ax2.plot(x[:,1], 'g--')

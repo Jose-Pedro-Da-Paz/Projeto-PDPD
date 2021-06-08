@@ -4,8 +4,10 @@ import matplotlib.pyplot as plt
 import random
 import math
 
+
 k = 0
 num = 2
+
 
 # define função teste
 def f(x):
@@ -13,6 +15,7 @@ def f(x):
     for k in range(num):
         fx += (x[k]**2)
     return fx
+
 
 # Ponto de inicio --> Determina  o ponto de partida da procura
 def entrada_valor(num):
@@ -31,6 +34,7 @@ def entrada_valor(num):
     xinicio = np.zeros(num)
     for k in range(num):
         xinicio[k] = float(input("x{} ínicio: ".format(k)))
+    
     return xinicio 
 
 
@@ -47,17 +51,20 @@ def entrada_valor(num):
 
 ## Geração da figura onde vai ser armazenada os dados para o gráfico
 # plt.figure()
+
 # # Specify contour lines 
 # #lines = range(2,52,2)
+
 # # Plot contours
 # CS = plt.contour(x1m, x2m, fm, 50)#,lines)
+
 ## Label contours
 # plt.clabel(CS, inline=1, fontsize=10)
+
 # # Add some text to the plot
 # plt.title('Non-Convex Function')
 # plt.xlabel('x1')
 # plt.ylabel('x2')
-
 
 
 ##################################################
@@ -114,6 +121,7 @@ t = t1
 DeltaE_avg = 0.0
 for i in range(n):
     print('Ciclo: ' + str(i) + ' Temperatura: ' + str(t))
+    
     for j in range(m):
 
         # gera novos pontos para ser testados
@@ -178,9 +186,11 @@ plt.plot(x[:,0],x[:,1],'y-o')
 plt.savefig('contour.png')
 
 fig = plt.figure()
+
 ax1 = fig.add_subplot(211)
 ax1.plot(fs, 'r.-')
 ax1.legend(['Objective'])
+
 ax2 = fig.add_subplot(212)
 ax2.plot(x[:, 0], 'b.-')
 ax2.plot(x[:, 1], 'g--')
