@@ -5,34 +5,38 @@ import random
 import math
 
 k = 0
-num = 5
+num = 2
 
 # define função teste
 def f(x):
+    fx = 0
     for k in range(num):
-        fx = fx + (x[k]**2) 
+        fx += (x[k]**2)
     return fx
 
 # Ponto de inicio --> Determina  o ponto de partida da procura
 def entrada_valor(num):
     """
-    [summary]
+    entrada_valor tem como função receber os valores que o usuário 
+    insere. E armazena em um vetor xinicio, este vetor determina 
+    qual será o ponto de início de procura do algoritmo pelo melhor valor 
+    que soluciona a função custo.
 
     Args:
-        num ([int]): [description]
+        num ([int]): número de váriaves da função custo
 
     Returns:
-        [float]: [description]
+        [float]: Retorna o vetor que indica qual é o ponto de ínicio do algoritmo
     """
     xinicio = np.zeros(num)
-    for k in range(0, num):
+    for k in range(num):
         xinicio[k] = float(input("x{} ínicio: ".format(k)))
     return xinicio 
 
 
 
-## gráfico ou algo assim kkkk
-# i1 = np.arange(-5.0, 5.0, 0.01)
+# gráfico 
+# i1 = np.arange(-5.0, 5.0, 0.01) 
 # i2 = np.arange(-5.0, 5.0, 0.01)
 # i3 = np.arange(-5.0, 5.0, 0.01)
 # i4 = np.arange(-5.0, 5.0, 0.01)
@@ -60,7 +64,7 @@ def entrada_valor(num):
 # Simulated Annealing
 ##################################################
 # Número de Cíclos
-n = 50
+n = 1000
 # Número de tentativas por ciclo
 m = 50
 # Número de soluções aceitas
@@ -83,11 +87,13 @@ x = np.zeros((n+1,num))
 x[0] = entrada_valor(num)
 xi = np.zeros(num)
 xi = x[0]
+print(xi.shape)
 na = na + 1.0
 # melhor resultado para x
 xc = np.zeros(num)
 xc = x[0]
 fc = f(xi)
+print(fc)
 fs = np.zeros(n+1)
 fs[0] = fc
 # temperatura atual

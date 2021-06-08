@@ -13,24 +13,27 @@ def f(x):
     return fx
 
 # Ponto de inicio --> Determina  o ponto de partida da procura
-def entrada_valor(num):
-    """
-    [summary]
+# def entrada_valor(num):
+#     """
+#     entrada_valor tem como função receber os valores que o usuário 
+#     insere. E armazena em um vetor xinicio, este vetor determina 
+#     qual será o ponto de início de procura do algoritmo pelo melhor valor 
+#     que soluciona a função custo.
 
-    Args:
-        num ([int]): [description]
+#     Args:
+#         num ([int]): número de váriaves da função custo
 
-    Returns:
-        [float]: [description]
-    """
-    xinicio = np.zeros(num)
-    for k in range(0, num):
-        xinicio[k] = float(input("x{} ínicio: ".format(k)))
-    return xinicio 
+#     Returns:
+#         [float]: Retorna o vetor que indica qual é o ponto de ínicio do algoritmo
+#     """
+#     xinicio = np.zeros(num)
+#     for k in range(num):
+#         xinicio[k] = float(input("x{} ínicio: ".format(k)))
+#     return xinicio 
+x_start = [4,4]
 
 
-
-# gráfico ou algo assim kkkk
+# gráfico 
 i1 = np.arange(-5.0, 5.0, 0.01)
 i2 = np.arange(-5.0, 5.0, 0.01)
 x1m, x2m = np.meshgrid(i1, i2)
@@ -75,8 +78,8 @@ frac = (t50/t1)**(1.0/(n-1.0))
 # chama entrada_valor
 
 # Inicia x
-x = np.zeros((n+1,2))
-x[0] = entrada_valor(num)
+x = np.zeros((n+1,num))
+x[0] = x_start #entrada_valor(num)
 xi = np.zeros(num)
 xi = x[0]
 na = na + 1.0
@@ -88,6 +91,7 @@ fs = np.zeros(n+1)
 fs[0] = fc
 # temperatura atual
 t = t1
+pior = 0
 
 # DeltaE médio
 DeltaE_avg = 0.0
@@ -97,9 +101,7 @@ for i in range(n):
         # gera novos pontos para ser testados
         for k in range(num):
             xi[k] = xc[k] + random.random() - 0.5
-            xi[k] = xc[k] + random.random() - 0.5
             # limita máximos e minimos onde serão procurados as respostas
-            xi[k] = max(min(xi[k],5.0),-5.0)
             xi[k] = max(min(xi[k],5.0),-5.0)
         DeltaE = abs(f(xi)-fc)
         if (f(xi)>fc):
@@ -113,9 +115,11 @@ for i in range(n):
             if (random.random()<p):
                 # aceita a pior solução
                 accept = True
+                pior += 1
             else:
                 # Não aceita a pior solução
                 accept = False
+
         else:
             # se a função objetivo for menor automaticamente aceita
             accept = True
@@ -138,6 +142,7 @@ for i in range(n):
 # printa as soluções
 print('Best solution: ' + str(xc))
 print('Best objective: ' + str(fc))
+print(pior)
 print(x)
 
 plt.plot(x[:,0],x[:,1],'y-o')

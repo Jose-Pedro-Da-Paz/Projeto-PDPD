@@ -18,7 +18,7 @@ def f(x):
     return fx
 
 # Ponto de inicio --> Determina  o ponto de partida da procura
-x_start = [0.8, -0.5]
+x_start = [4, 4]
 
 # gráfico ou algo assim kkkk
 i1 = np.arange(-5.0, 5.0, 0.01)
@@ -72,6 +72,7 @@ fs = np.zeros(n+1)
 fs[0] = fc
 # temperatura atual
 t = t1
+pior = 0
 # DeltaE médio
 DeltaE_avg = 0.0
 for i in range(n):
@@ -95,6 +96,7 @@ for i in range(n):
             if (random.random()<p):
                 # aceita a pior solução
                 accept = True
+                pior += 1
             else:
                 # Não aceita a pior solução
                 accept = False
@@ -120,6 +122,7 @@ for i in range(n):
 # printa as soluções
 print('Best solution: ' + str(xc))
 print('Best objective: ' + str(fc))
+print(pior)
 print(x)
 
 plt.plot(x[:,0],x[:,1],'y-o')
