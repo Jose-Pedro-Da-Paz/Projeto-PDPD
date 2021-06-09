@@ -101,7 +101,7 @@ na = na + 1.0
 
 # melhor resultado para x
 xc = np.zeros(num)
-xc = x[0]
+xc = x[0] # np.copy(x[0])
 fc = f(xi)
 fs = np.zeros(n + 1)
 fs[0] = fc
