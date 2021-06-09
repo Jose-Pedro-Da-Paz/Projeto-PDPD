@@ -10,7 +10,7 @@ num = 2
 
 # define função teste
 def f(x):
-    fx = (((x[0]**2)+x[1]-11)**2)+((x[0]+(x[1]**2)-7)**2)
+    fx = (((x[0] ** 2) + x[1] - 11) ** 2) + ((x[0] + (x[1] ** 2) - 7) ** 2)
     return fx
 
 
@@ -32,7 +32,7 @@ def f(x):
 #     for k in range(num):
 #         xinicio[k] = float(input("x{} ínicio: ".format(k)))
 #     return xinicio 
-x_start = [4,4]
+x_start = [4, 4]
 
 
 # gráfico 
