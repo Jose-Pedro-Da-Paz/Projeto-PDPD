@@ -15,24 +15,24 @@ def f(x):
 
 
 # Ponto de inicio --> Determina  o ponto de partida da procura
-# def entrada_valor(num):
-#     """
-#     entrada_valor tem como função receber os valores que o usuário 
-#     insere. E armazena em um vetor xinicio, este vetor determina 
-#     qual será o ponto de início de procura do algoritmo pelo melhor valor 
-#     que soluciona a função custo.
+def entrada_valor(num):
+    """
+    entrada_valor tem como função receber os valores que o usuário 
+    insere. E armazena em um vetor xinicio, este vetor determina 
+    qual será o ponto de início de procura do algoritmo pelo melhor valor 
+    que soluciona a função custo.
 
-#     Args:
-#         num ([int]): número de váriaves da função custo
+    Args:
+        num ([int]): número de váriaves da função custo
 
-#     Returns:
-#         [float]: Retorna o vetor que indica qual é o ponto de ínicio do algoritmo
-#     """
-#     xinicio = np.zeros(num)
-#     for k in range(num):
-#         xinicio[k] = float(input("x{} ínicio: ".format(k)))
-#     return xinicio 
-x_start = [4, 4]
+    Returns:
+        [float]: Retorna o vetor que indica qual é o ponto de ínicio do algoritmo
+    """
+    xinicio = np.zeros(num)
+    for k in range(num):
+        xinicio[k] = float(input("x{} ínicio: ".format(k)))
+    return xinicio 
+
 
 
 # gráfico 
@@ -94,14 +94,14 @@ frac = (t50 / t1) ** (1.0 / (n - 1.0))
 # Inicia x
 x = np.zeros((n + 1, num))
 
-x[0] = x_start #entrada_valor(num)
+x[0] = entrada_valor(num)
 xi = np.zeros(num)
 xi = x[0]
 na = na + 1.0
 
 # melhor resultado para x
 xc = np.zeros(num)
-xc = x[0] # np.copy(x[0])
+xc = np.copy(x[0])
 fc = f(xi)
 fs = np.zeros(n + 1)
 fs[0] = fc
